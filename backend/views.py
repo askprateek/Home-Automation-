@@ -2,9 +2,10 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from .models import Device
 from django.core import serializers
-import RPi.GPIO as GPIO
-import time
-import serial ,requests
+import RPi.GPIO as GPIO, time, serial, requests
+from rest_framework import viewsets
+from .serializers import DeviceSerializer
+
 
 #BUZZER=17
 BUZZER_CHECK1=5
@@ -32,6 +33,15 @@ def device(request,type,id,status):
     
     return HttpResponse( type + str(id) + str(status) )
 
+
+class DeviceViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint
+    """
+
+    queryset = Device.objects.all()
+    serializer_class = DeviceSerializer
+
 def buzzer(request):
 	pass
 
@@ -47,7 +57,7 @@ def temp(request):
 	return HttpResponse(x[1])
 
 def status(request):
-	device_status = serializers.serialize('json', Device.objects.all())
+	device_status = serializers.serialize('json', Device.objects.all(), fields =('name','type','device_id','status') )
 	return HttpResponse(device_status)
 
 def allon(request):

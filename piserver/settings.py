@@ -26,22 +26,22 @@ SECRET_KEY = '6ar@mv_m0z&+ekwss!#j890sk1erb^8)&@s^(09fi6e7x4dt@n'
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT = True
+#SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+#SECURE_SSL_REDIRECT = True
 
 # Application definition
 
 INSTALLED_APPS = (
-	'sslserver',
+#	'sslserver',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-	'corsheaders',
-	'backend',
-	#'rest_framework',
+    'corsheaders',
+    'backend',
+	'rest_framework',
 )
 
 MIDDLEWARE_CLASSES = (
